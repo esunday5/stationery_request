@@ -15,7 +15,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_TIMEOUT'] = 10
 
-mail = Mail(app)
+request = request(app)
 
 @app.route("/stationeryrequest", methods=["POST"])
 def send_email():
@@ -74,7 +74,7 @@ def send_email():
     )
     msg.body = f"You have a new request for {branch_name}."  # Plain text fallback
     msg.html = html_content  # HTML content
-    mail.send(msg)
+    request.send(msg)
 
     return {"message": "Email sent successfully!"}, 200
 
